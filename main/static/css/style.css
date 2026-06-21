@@ -1,0 +1,138 @@
+body {
+    background-color: #f5f7fa;
+    min-height: 100vh;
+}
+
+/* ========= Navbar ========= */
+
+.navbar {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+.navbar .btn {
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    padding: 6px 14px;
+}
+.navbar .btn:hover {
+    transform: translateY(-1px);
+}
+.navbar .btn-warning {
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+.navbar .btn-success {
+    font-weight: 600;
+}
+.navbar .btn-danger {
+    font-weight: 600;
+}
+.navbar .d-flex a {
+    margin-left: 8px;
+}
+/* ========= Main Container ========= */
+
+.container {
+    max-width: 1000px;
+}
+body{
+    background-color: f5f7fa;
+    min-height: 100vh;
+}
+
+/* ========= Cards ========= */
+
+.card {
+    border: none;
+    border-radius: 15px;
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3,
+.card h4 {
+    font-weight: 600;
+}
+
+/* ========= Login Page ========= */
+
+.login-card {
+    margin-top: 100px;
+}
+
+.login-card input {
+    height: 48px;
+}
+
+.login-card button {
+    height: 48px;
+}
+
+/* ========= Todo Page ========= */
+
+list-group-item {
+    transition: all 0.2s ease;
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa;
+}
+
+.list-group-item span {
+    font-weight: 500;
+}
+
+#todolist .card {
+    border-radius: 12px;
+    transition: 0.2s;
+}
+
+#todolist .card:hover {
+    transform: translateY(-5px);
+}
+
+/* ========= Buttons ========= */
+
+.btn {
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+/* ========= Inputs ========= */
+
+.form-control {
+    border-radius: 8px;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+/* ========= Error Messages ========= */
+
+#error {
+    min-height: 20px;
+    font-size: 14px;
+}
+
+/* ========= Mobile ========= */
+
+@media (max-width: 768px) {
+
+    .container {
+        padding: 15px;
+    }
+
+    .login-card {
+        margin-top: 40px;
+    }
+
+}
