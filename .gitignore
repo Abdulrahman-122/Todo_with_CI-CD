@@ -2,4 +2,10 @@ main/.env
 main/.venv/
 
 main/.T/
-__pycache__/
+main/__pycache__/
+main/.*
+
+main/*.py[cod]
+main/*$py.class
+.pytest_cache
+.ruff_cache
