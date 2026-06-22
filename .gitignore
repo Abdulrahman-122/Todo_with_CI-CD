@@ -1,11 +1,15 @@
-main/.env
-main/.venv/
+# Python cache
+__pycache__/
+*.py[cod]
 
-main/.T/
-main/__pycache__/
-main/.*
+# Virtual environments
+.venv/
+venv/
+.T/
 
-main/*.py[cod]
-main/*$py.class
-.pytest_cache
-.ruff_cache
+# Test caches
+.pytest_cache/
+.ruff_cache/
+
+# Environment variables
+.env
