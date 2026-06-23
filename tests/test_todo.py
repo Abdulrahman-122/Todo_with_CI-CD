@@ -35,3 +35,9 @@ def test_create_todo():
 
     assert res2.status_code == 200
     assert res2.json()["id"] == todo_id
+
+
+# update Todo
+
+
+# Delete Todo

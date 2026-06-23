@@ -4,19 +4,21 @@ from main.app import app
 client = TestClient(app)
 
 
-# def test_register():
-#     res=client.post(
-#         "/auth/register",
-#         json={
-#             "username":"John3",
-#             "email":"john3@demo.com",
-#             "password":"TTYSecrets"
-#         }
-#     )
-#     assert res.status_code==201
+def test_register():
+    res = client.post(
+        "/auth/register",
+        json={
+            "username": "John5",
+            "email": "john5@demo.com",
+            "password": "TTYSrecrets",
+        },
+    )
+    assert res.status_code == 201
+
+
 def test_login():
     res = client.post(
-        "/auth/login", json={"email": "john3@demo.com", "password": "TTYSecrets"}
+        "/auth/login", json={"email": "john5@demo.com", "password": "TTYSrecrets"}
     )
     assert res.status_code == 200
     data = res.json()
