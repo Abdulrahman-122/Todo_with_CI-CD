@@ -8,6 +8,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 
+
 # build any tables that you assigned to your engine into database
 def init_db():
     Base.metadata.create_all(bind=engine)
@@ -28,6 +29,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-@app.on_event('startup') #create tables and database when fastapi work 
+
+
+@app.on_event("startup")  # create tables and database when fastapi work
 def startup():
     init_db()
