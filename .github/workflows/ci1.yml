@@ -31,18 +31,17 @@ jobs:
       db:
         image: postgres:15
         env:
-          POSTGRES_USER: test
-          POSTGRES_PASSWORD: 123Test
-          POSTGRES_DB: test_db
+          POSTGRES_USER: ${{secrets.POSTGRES_USER}}
+          POSTGRES_PASSWORD: ${{secrets.POSTGRES_PASSWORD}}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
         ports:
           - 5432:5432
         options: >-
-          --health-cmd="pg_isready -U test"
+          --health-cmd="pg_isready -U $POSTGRES_USER "
           --health-interval=10s
           --health-timeout=5s
           --health-retries=5
     env:
-    #  change this to environment sercret 
       DATABASE_URL: ${{ secrets.DATABASE_URL }} 
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
       ALGORITHM: "HS256"

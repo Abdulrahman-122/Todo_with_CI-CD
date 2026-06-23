@@ -1,0 +1,57 @@
+name: Check_coverage_using_pytest
+on:
+   push:
+   pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.10','3.11','3.12']
+    services:
+      db:
+        image: postgres:15
+        env:
+          POSTGRES_USER: ${{secrets.POSTGRES_USER}}
+          POSTGRES_PASSWORD: ${{secrets.POSTGRES_PASSWORD}}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U $POSTGRES_USER "
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=2
+          
+    env:
+      DATABASE_URL: ${{secrets.DATABASE_URL}}
+      SECRET_KEY: ${{secrets.SECRET_KEY}}
+      ALGORITHM: "HS256"
+      ACCESS_TOKEN_EXPIRE_MINUTES: 30 
+    
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      
+      - name: Setup python version ${{ matrix.python-version }}
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: |
+          pip install --upgrade pip 
+          pip install -r requirements.txt
+      - name: "Waiting for DB..."
+        run: |
+          echo "wait 5s"
+          sleep5
+      - name: check Pytest
+        run: |
+          python -m pytest
+      - name: check Coverage using  pytest
+        run: |
+          echo "Check coverage "
+          python -m pytest --cov=main --cov-report=term-missing --cov-report=html --cov-fail-under=80
+      - name: Upload_coverage_report
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: coverag-report
+          path: htmlcov/
