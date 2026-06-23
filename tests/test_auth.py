@@ -8,19 +8,19 @@ def test_register():
     res = client.post(
         "/auth/register",
         json={
-            "username": "John5",
-            "email": "john5@demo.com",
+            "username": "John6",
+            "email": "john6@demo.com",
             "password": "TTYSrecrets",
         },
     )
     assert res.status_code == 201
 
 
-# def test_login():
-#     res = client.post(
-#         "/auth/login", json={"email": "john5@demo.com", "password": "TTYSrecrets"}
-#     )
-#     assert res.status_code == 200
-#     data = res.json()
-#     assert "access_token" in data
-#     assert data["token_type"] == "bearer"
+def test_login():
+    res = client.post(
+        "/auth/login", json={"email": "john6@demo.com", "password": "TTYSrecrets"}
+    )
+    assert res.status_code == 200
+    data = res.json()
+    assert "access_token" in data
+    assert data["token_type"] == "bearer"
