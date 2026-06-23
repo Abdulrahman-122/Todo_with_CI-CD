@@ -10,9 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 
 # build any tables that you assigned to your engine into database
-def init_db():
-    Base.metadata.create_all(bind=engine)
-
+Base.metadata.create_all(bind=engine)
 
 origins = ["*"]
 
@@ -31,6 +29,4 @@ app.add_middleware(
 )
 
 
-@app.on_event("startup")  # create tables and database when fastapi work
-def startup():
-    init_db()
+
