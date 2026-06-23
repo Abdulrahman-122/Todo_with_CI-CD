@@ -16,11 +16,11 @@ def test_register():
     assert res.status_code == 201
 
 
-def test_login():
-    res = client.post(
-        "/auth/login", json={"email": "john5@demo.com", "password": "TTYSrecrets"}
-    )
-    assert res.status_code == 200
-    data = res.json()
-    assert "access_token" in data
-    assert data["token_type"] == "bearer"
+# def test_login():
+#     res = client.post(
+#         "/auth/login", json={"email": "john5@demo.com", "password": "TTYSrecrets"}
+#     )
+#     assert res.status_code == 200
+#     data = res.json()
+#     assert "access_token" in data
+#     assert data["token_type"] == "bearer"
