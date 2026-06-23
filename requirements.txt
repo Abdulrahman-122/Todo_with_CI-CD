@@ -5,6 +5,7 @@ black==26.5.1
 certifi==2026.6.17
 cffi==2.0.0
 click==8.4.1
+coverage==7.14.3
 cryptography==49.0.0
 ecdsa==0.19.2
 fastapi==0.110.0
@@ -32,6 +33,7 @@ pydantic-settings==2.2.1
 pydantic_core==2.46.4
 pyflakes==3.4.0
 pytest==8.1.1
+pytest-cov==7.1.0
 python-dotenv==1.2.2
 python-jose==3.5.0
 python-multipart==0.0.32

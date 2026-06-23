@@ -42,7 +42,7 @@ jobs:
       - name: "Waiting for DB..."
         run: |
           echo "wait 5s"
-          sleep5
+          sleep 5
       - name: check Pytest
         run: |
           python -m pytest
