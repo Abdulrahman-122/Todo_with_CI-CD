@@ -9,7 +9,10 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 
 # build any tables that you assigned to your engine into database
-Base.metadata.create_all(bind=engine)
+def init_db():
+    Base.metadata.create_all(bind=engine)
+
+
 origins = ["*"]
 
 app = FastAPI(title="Devops engine")
@@ -25,3 +28,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+@app.on_event('startup') #create tables and database when fastapi work 
+def startup():
+    init_db()
