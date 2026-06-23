@@ -43,5 +43,7 @@ jobs:
       - name: Wait for DB(safety setup)
         run: echo "waiting for DB..."
             sleep 5
+            echo "start ..."
       - name: Run_Tests
+        
         run: python -m pytest

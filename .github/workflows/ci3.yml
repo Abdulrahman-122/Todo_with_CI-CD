@@ -44,6 +44,7 @@ jobs:
         run: |
           echo "wait 5s"
           sleep 5
+          echo "start ..."
       - name: check Pytest
         run: |
           python -m pytest
