@@ -8,8 +8,8 @@ def test_register():
     res = client.post(
         "/auth/register",
         json={
-            "username": "John0",
-            "email": "john0@demo.com",
+            "username": "John12",
+            "email": "john12@demo.com",
             "password": "TTYSrecrets",
         },
     )
@@ -18,7 +18,7 @@ def test_register():
 
 def test_login():
     res = client.post(
-        "/auth/login", json={"email": "john0@demo.com", "password": "TTYSrecrets"}
+        "/auth/login", json={"email": "john12@demo.com", "password": "TTYSrecrets"}
     )
     assert res.status_code == 200
     data = res.json()
