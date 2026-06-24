@@ -1,0 +1,32 @@
+# To run this using act locally
+# act push -W .github/workflows/ci5.yml  -P ubuntu-latest=ghcr.io/catthehacker/ubuntu:act-latest  
+  
+
+name: Build_image_using_compose
+on:
+  push:
+  pull_request: 
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout_code
+        uses:  actions/checkout@v4
+      - name: Build_Docker_compose
+        run: |
+          docker  compose build
+      - name:  Start container
+        run: |
+          docker compose up -d
+      - name:  Wait for Api
+
+        run: sleep 10
+      - name: Test_smoke
+        run: |
+          curl --fail http://localhost:8000/health
+      - name: Show Logs on Failure
+        if: failure()
+        run: docker compose logs
+      - name: shutdown Containers
+        if: always()
+        run: docker compose down

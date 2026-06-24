@@ -1,0 +1,115 @@
+# name: Build_project_using_dockerfile
+# on:
+#   push:
+#   pull_request: 
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     services:
+#      db:
+#       image: postgres:15-alpine
+#       env:
+#         POSTGRES_USER: ${{secrets.POSTGRES_USER}}
+#         POSTGRES_DB: ${{secrets.POSTGRES_DB}}
+#         POSTGRES_PASSWORD: ${{secrets.POSTGRES_PASSWORD}}
+#       ports:
+#         - "5432:5432"
+#       options: >-
+#         --health-cmd="pg_isready "
+#         --health-interval=10s
+#         --health-timeout=5s
+#         --health-retries=4
+#     steps:
+#       - uses: actions/checkout@v4
+#       - name: Build Docker image
+#         run: |
+#           docker build -t  todo . 
+
+#       - name: Run container
+#         run: |
+#           docker run -d --name todo_app  -p 8000:8000 \
+#            -e DATABASE_URL=postgresql://${{secrets.POSTGRES_USER}}:${{secrets.POSTGRES_PASSWORD}}@host.docker.internal:5432/${{secrets.POSTGRES_DB}}  \
+#            -e SECRET_KEY=${{secrets.SECRET_KEY}} \
+#            -e ALGORITHM=HS256  \
+#            -e ACCESS_TOKEN_EXPIRE_MINUTES=30 \
+#            todo 
+#       - name: wait_for_startup
+#         run: |
+#           sleep 15
+#       - name: Apply_smoke_test
+#         run: |
+#           curl   --fail http://localhost:8000/health
+#       - name: check_failure
+#         if: failure()
+#         run: |
+#           docker logs todo_app 
+#       - name: clean
+#         if: always()
+#         run: |
+#           docker stop todo_app
+#           docker rm todo_app
+#if you want to run it using act locally  
+
+#  use this command;
+#act push -W .github/workflows/ci4.yml  -P ubuntu-latest=ghcr.io/catthehacker/ubuntu:act-latest  --secret-file main/.secrets
+
+
+name: Build_project_using_dockerfile
+on:
+  push:
+  pull_request:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: create network
+      run: docker network  create todo_net
+    - name: start_postgres
+      run: |
+        docker run  -d  \
+        --name postg \
+        --network todo_net \
+        -e POSTGRES_USER=${{secrets.POSTGRES_USER}} \
+        -e POSTGRES_PASSWORD=${{secrets.POSTGRES_PASSWORD}} \
+        -e POSTGRES_DB=${{secrets.POSTGRES_DB}} \
+        postgres:15-alpine
+    - name: wait for post container
+      run: |
+        sleep 10
+    - name: build dockerfile
+      run: |
+        docker build -t todo .
+    - name: Run container
+      run: |
+        docker run -d --name todo_app  -p 8000:8000 \
+         --network todo_net \
+         -e DATABASE_URL=postgresql://${{secrets.POSTGRES_USER}}:${{secrets.POSTGRES_PASSWORD}}@postg:5432/${{secrets.POSTGRES_DB}}  \
+         -e SECRET_KEY=${{secrets.SECRET_KEY}} \
+         -e ALGORITHM=HS256  \
+         -e ACCESS_TOKEN_EXPIRE_MINUTES=30 \
+         todo 
+    - name: wait_for_startup
+      run: |
+        sleep 15
+    - name: Apply_smoke_test
+      run: |
+        curl   --fail http://localhost:8000/health
+    - name: check_failure
+      if: failure()
+      run: |
+        docker logs todo_app 
+        docker logs postg
+    - name: clean
+      if: always()
+      run: |
+        docker rm -f todo_app || true
+        docker rm -f postg ||  true
+        docker network rm todo_net || true
+        
+
+
+
+ 
+
+  
