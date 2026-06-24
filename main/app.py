@@ -29,4 +29,8 @@ app.add_middleware(
 )
 
 
+#api for smoke test
 
+@app.get('/health')
+def check_health():
+    return {"status":"I am Healthy"}
