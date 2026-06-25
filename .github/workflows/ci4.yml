@@ -82,15 +82,15 @@ jobs:
         docker build -t todo .
     - name: Run container
       run: |
-        docker run -d \
-         --name todo_app \
-         -p 8000:8000 \
-         --network todo_net \
-         -e DATABASE_URL=postgresql://${{secrets.POSTGRES_USER}}:${{secrets.POSTGRES_PASSWORD}}@postg:5432/${{secrets.POSTGRES_DB}}  \
-         -e SECRET_KEY=${{secrets.SECRET_KEY}} \
-         -e ALGORITHM=HS256  \
-         -e ACCESS_TOKEN_EXPIRE_MINUTES=30  \
-         todo 
+       docker run -d \
+        --name todo_app \
+        --network todo_net \
+        -p 8000:8000 \
+        -e DATABASE_URL=postgresql://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}@postg:5432/${{ secrets.POSTGRES_DB }} \
+        -e SECRET_KEY=${{ secrets.SECRET_KEY }} \
+        -e ALGORITHM=HS256 \
+        -e ACCESS_TOKEN_EXPIRE_MINUTES=30 \
+        todo
     - name: wait_for_startup
       run: |
         sleep 15
