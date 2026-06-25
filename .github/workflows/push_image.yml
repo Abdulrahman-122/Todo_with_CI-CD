@@ -1,7 +1,7 @@
 name: Docker Publish
 on:
   release: 
-    types: [published]
+    types: [published]        #once a new released started , pushing image will be 
 permissions:
   contents: write
   packages: write
@@ -16,7 +16,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{github.actor}}
-          password: ${{secrets.Github_Token}}
+          password: ${{secrets.GITHUB_TOKEN}}
       - name: Build and publish
         uses: docker/build-push-action@v6
         with:
