@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/Abdulrahman-122/Todo_with_CI-CD/compare/v1.0.1...v1.0.2) (2026-06-25)
+
+
+### Bug Fixes
+
+* Corrected version ([3eb18bb](https://github.com/Abdulrahman-122/Todo_with_CI-CD/commit/3eb18bb076ba0da3527039a6208e12b9595ce83b))
+
 ## [1.0.1](https://github.com/Abdulrahman-122/Todo_with_CI-CD/compare/v1.0.0...v1.0.1) (2026-06-25)
 
 
