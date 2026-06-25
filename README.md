@@ -9,7 +9,6 @@
         ✅ Docker build workflow
         ✅ Docker Compose workflow
         ✅ Security scan (pip-audit)
-        ✅ Secret scanning (Gitleaks)
         ✅ Release Please (automatic versioning)
         ✅ Docker image publishing to GHCR
        All done correctly (Alhamdullah)
