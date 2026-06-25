@@ -1,8 +1,8 @@
 name: Docker Publish
 on:
-  release:
-    types: [published]         #once a new released started , pushing image will be 
-          
+  push:        #once a new released started , pushing image will be 
+    branches:
+      - main
 permissions:
   contents: write
   packages: write
@@ -24,5 +24,4 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/abdulrahman-122/todo:latest   
-            ghcr.io/abdulrahman-122/todo:${{ github.event.release.tag_name }}
+              ghcr.io/abdulrahman-122/todo-with-ci-cd:latest   
