@@ -62,8 +62,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: create network
+    - uses: actions/checkout@v4 
+    - name: create network_for_Docker
       run: docker network  create todo_net
     - name: start_postgres
       run: |

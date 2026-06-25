@@ -15,7 +15,7 @@ jobs:
       - name: Build_Docker_compose
         run: |
           docker  compose build
-      - name:  Start container
+      - name:  Start container_after_applying_compose
         run: |
           docker compose up -d
       - name:  Wait for Api
