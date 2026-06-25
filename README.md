@@ -16,6 +16,5 @@
   - to understand how i built these workflows;
     - Read (structure) directory.
   - I did these materials for you if you can't understand how are Github Actions working??:
-    - i built it as a labs for you;
       - https://github.com/Abdulrahman-122/Github_Actions
       
