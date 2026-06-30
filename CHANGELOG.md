@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/Abdulrahman-122/Todo_with_CI-CD/compare/v1.0.2...v1.0.3) (2026-06-30)
+
+
+### Bug Fixes
+
+* **ci:** publish docker image to ghcr ([9405de1](https://github.com/Abdulrahman-122/Todo_with_CI-CD/commit/9405de181c6aceeac732b52e45a06c7f8c9c2c85))
+
 ## [1.0.2](https://github.com/Abdulrahman-122/Todo_with_CI-CD/compare/v1.0.1...v1.0.2) (2026-06-25)
 
 
